@@ -2,57 +2,135 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="Author" content="Savan Cvijetic">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notensystem</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    <title>Stundenplan</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-primary bg-light">
-        <a class="navbar-brand" href="#">Grade manager</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Schulen</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Noten
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">rechner</a>
-                <a class="dropdown-item" href="#">zielsetzer</a>
-                <a class="dropdown-item" href="#">plotter</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Download</a>
-            </li>
-          </ul>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Stundenplan</a>
+        <ul class="navbar-nav mr-auto"></ul>
           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <input class="form-control mr-sm-2" type="search" placeholder="Lehrperson" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Suchen</button>
           </form>
         </div>
       </nav>
-    
-    
-    	<!-- Bootstrap core CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+      <div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<h1 class="pt-5">Stundenplan der BBZBL</h1>
+				<div id="stundenplan" class="mt-5">
+                    <form>
+                        <div class="form-group">
+                            <label for="occupation">Berufsgruppe auswählen</label>
+                            <select class="form-control" name="occupation" id="occupation">
+                                
+                            </select>
+                        </div>
+                        <div id="afterOccupationSelection">
+                            
+                            <div class="form-group" id="classSelect">
+                                <label for="class">Klasse auswählen</label>
+                                <select class="form-control" id="class">
 
-    <!-- Bootstrap core JavaScript -->
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+                                </select>
+                                
+                            </div>
+                            <div class="form-group">
+                                <label for="teacher">Lehrperson auswählen</label>
+                                <select class="form-control" id="teacher">
+                                
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+				</div>
+			</div>
+		</div>
+    </div>
+    <div class="dateChanger">
+        <nav aria-label="Page navigation example" id="pageNav">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">11.01.2021 - 15.01.2021</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">18.01.2021 - 22.01.2021</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" tabindex="1" aria-disabled="true">25.01.2021 - 30.01.2021</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+        <div class="container" id="timeTableAppearance">
+        <div class="table-responsive">
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr class="bg-light-gray">
+                        <th class="text-uppercase">Time
+                        </th>
+                        <th class="text-uppercase">Montag</th>
+                        <th class="text-uppercase">Dienstag</th>
+                        <th class="text-uppercase">Mittwoch</th>
+                        <th class="text-uppercase">Donnerstag</th>
+                        <th class="text-uppercase">Freitag</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="align-middle">07:00</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">08:00</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">09:00</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">10:00</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">11:00</td>     
+                    </tr>
+                    <tr>
+                        <td class="align-middle">12:00</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">13:00</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">14:00</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">15:00</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">16:00</td>     
+                    </tr>
+                    <tr>
+                        <td class="align-middle">17:00</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">18:00</td>     
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-	<!-- Scripts for this Site -->
-	<script type="text/javascript" src="js/script.js"></script>
 
-    
-</body>
-</html>
+
+
+      <footer>
+        <div class="text-center p-3" style="background-color: rgba(32, 129, 232, 1)">
+            Savan Cvijetic © 2021 Copyright:
+            <a class="text-white" href="https://mdbootstrap.com/">Impressum</a>
+          </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"></script>
+    <script type="text/javascript" src="assets/js/script.js"></script>
+
+    <body>
+
+    </html>
